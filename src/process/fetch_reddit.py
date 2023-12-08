@@ -86,6 +86,3 @@ def fetch_topic(limit=_LIMIT, story_number=_STORY_NUMBER):
                     print("No comments above 700 characters.")
 
                 print("\n" + "-"*50 + "\n")
-
-
-fetch_topic()
