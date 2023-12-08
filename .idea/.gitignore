@@ -1,4 +1,4 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-../src/resources/*
+../src/resources/logins.toml
