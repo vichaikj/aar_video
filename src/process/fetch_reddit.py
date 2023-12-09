@@ -1,8 +1,6 @@
 """Take the top post reddit in Ask-Reddit sub, and select the best long-enough comment"""
-import sys
 from html import unescape
 import re
-from datetime import datetime, timedelta
 
 import praw
 import toml
@@ -38,9 +36,15 @@ top_posts = subreddit.top(time_filter="year", limit=100)
 
 # Number of story
 _LIMIT = 1
-# Init number, to not modify
-_STORY_NUMBER = 0
 
+# Minimum characters in comment
+MIN_CHARS = 600
+
+# Depth of comments, 0 means not including any sub-comments
+COM_DEPTH = 0
+
+# Score minimum for the comment
+MIN_SCORE = 5000
 
 def clean_text(to_clean):
     # Combine patterns and exclude text between square brackets
@@ -52,7 +56,8 @@ def clean_text(to_clean):
     return combined_pattern.sub("", to_clean)
 
 
-def fetch_topic(limit=_LIMIT, story_number=_STORY_NUMBER):
+def fetch_topic(limit=_LIMIT):
+    story_number = 0
     for submission in top_posts:
         # Check if the post is from the last month
         title = submission.title.lower()
@@ -63,7 +68,7 @@ def fetch_topic(limit=_LIMIT, story_number=_STORY_NUMBER):
             filtered_comments = [
                 comment
                 for comment in comment_list
-                if len(comment.body) > 600 and comment.depth == 0 and comment.score > 5000
+                if len(comment.body) > MIN_CHARS and comment.depth == COM_DEPTH and comment.score > MIN_SCORE
             ]
 
             if filtered_comments:
@@ -85,7 +90,7 @@ def fetch_topic(limit=_LIMIT, story_number=_STORY_NUMBER):
                 if story_number >= limit:
                     break
             else:
-                print("No comments above 600 characters.")
+                print(f"No comments above {MIN_CHARS} characters.")
 
             print("\n" + "-"*50 + "\n")
 
