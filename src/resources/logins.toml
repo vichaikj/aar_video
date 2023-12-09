@@ -1,3 +1,6 @@
 [reddit_bot]
 CLIENT_ID = "4H2Q6RJOnsRTISN4CqcYJA"
 CLIENT_SECRET = "n6PSHCpH_y0WbYghx0Qo_HybVL9REw"
+
+[tiktok]
+SESSION_ID = "a8065ebac0d604ce4f5c679e550736c8"
