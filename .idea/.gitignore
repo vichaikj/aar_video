@@ -2,3 +2,5 @@
 /shelf/
 /workspace.xml
 ../src/resources/*
+*.mp3
+*.mp4
