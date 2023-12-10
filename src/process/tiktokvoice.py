@@ -95,7 +95,6 @@ def split_string(text: str, chunk_size: int):
             if current_chunk:
                 result.append(current_chunk.strip())
 
-    print(result)
     return result
 
 # checking if the website that provides the service is available
@@ -191,6 +190,7 @@ def tts(text: str, voice: str = "none", filename: str = "output.mp3", play_sound
 
             # Concatenate the base64 data in the correct order
             audio_base64_data = "".join(audio_base64_data)
+
 
         save_audio_file(audio_base64_data, filename)
         print(f"Audio file saved successfully as '{filename}'")

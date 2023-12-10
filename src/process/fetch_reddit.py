@@ -46,6 +46,7 @@ COM_DEPTH = 0
 # Score minimum for the comment
 MIN_SCORE = 5000
 
+
 def clean_text(to_clean):
     # Combine patterns and exclude text between square brackets
     combined_pattern = re.compile(
